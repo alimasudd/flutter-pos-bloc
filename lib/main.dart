@@ -31,6 +31,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => LogoutBloc(AuthRemoteDatasource()),
         ),
+        BlocProvider(
+          create: (context) => ProductBloc(ProductRemoteDatasource())
+            ..add(const ProductEvent.fetchLocal()),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
