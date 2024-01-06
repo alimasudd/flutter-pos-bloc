@@ -28,6 +28,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => LoginBloc(AuthRemoteDatasource()),
         ),
+        BlocProvider(
+          create: (context) => LogoutBloc(AuthRemoteDatasource()),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -50,7 +53,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: LoginPage()
+        home: DashboardPage()
       ),
     );
   }
