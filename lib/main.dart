@@ -57,7 +57,15 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        home: DashboardPage()
+        home: FutureBuilder<bool>(
+            future: AuthLocalDatasource().isAuth(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData && snapshot.data == true) {
+                return const DashboardPage();
+              } else {
+                return const LoginPage();
+              }
+            }),
       ),
     );
   }
