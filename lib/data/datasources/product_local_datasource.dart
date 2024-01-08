@@ -70,6 +70,15 @@ class ProductLocalDatasource {
     return id;
   }
 
+  //get order by isSync = 0
+  Future<List<OrderModel>> getOrderByIsSync() async {
+    final db = await instance.database;
+    final result = await db.query('orders', where: 'is_sync = 0');
+
+    return result.map((e) => OrderModel.fromLocalMap(e)).toList();
+  }
+
+
 
   Future<Database> get database async {
     if (_database != null) return _database!;
