@@ -86,6 +86,13 @@ class ProductLocalDatasource {
     return result.map((e) => OrderItem.fromMap(e)).toList();
   }
 
+  //update isSync order by id
+  Future<int> updateIsSyncOrderById(int id) async {
+    final db = await instance.database;
+    return await db.update('orders', {'is_sync': 1},
+        where: 'id = ?', whereArgs: [id]);
+  }
+
 
   Future<Database> get database async {
     if (_database != null) return _database!;
