@@ -60,6 +60,17 @@ class ProductLocalDatasource {
     ''');
   }
 
+  //save order
+  Future<int> saveOrder(OrderModel order) async {
+    final db = await instance.database;
+    int id = await db.insert('orders', order.toMapForLocal());
+    for (var orderItem in order.orders) {
+      await db.insert('order_items', orderItem.toMapForLocal(id));
+    }
+    return id;
+  }
+
+
   Future<Database> get database async {
     if (_database != null) return _database!;
 
