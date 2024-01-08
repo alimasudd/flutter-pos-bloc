@@ -1,4 +1,6 @@
 import 'package:flutter_pos/data/models/response/product_response_model.dart';
+import 'package:flutter_pos/presentation/home/models/order_item.dart';
+import 'package:flutter_pos/presentation/order/models/order_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ProductLocalDatasource {
@@ -29,7 +31,31 @@ class ProductLocalDatasource {
         price INTEGER,
         stock INTEGER,
         image TEXT,
-        category TEXT
+        category TEXT,
+        is_best_seller INTEGER,
+        is_sync INTEGER DEFAULT 0
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE orders (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nominal INTEGER,
+        payment_method TEXT,
+        total_item INTEGER,
+        id_kasir INTEGER,
+        nama_kasir TEXT,
+        is_sync INTEGER DEFAULT 0
+      )
+    ''');
+
+    await db.execute('''
+      CREATE TABLE order_items (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id_order INTEGER,
+        id_product INTEGER,
+        quantity INTEGER,
+        price INTEGER
       )
     ''');
   }
@@ -37,7 +63,7 @@ class ProductLocalDatasource {
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await _initDB('pos1.db');
+    _database = await _initDB('pos2.db');
     return _database!;
   }
 
