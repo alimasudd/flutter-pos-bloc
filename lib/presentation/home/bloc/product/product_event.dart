@@ -7,4 +7,6 @@ class ProductEvent with _$ProductEvent {
   const factory ProductEvent.fetchByCategory(String category) = _FetchByCategory;
   //fetch from local
   const factory ProductEvent.fetchLocal() = _FetchLocal;
+  //add product
+  const factory ProductEvent.addProduct(Product product, XFile image) = _AddProduct;
 }
