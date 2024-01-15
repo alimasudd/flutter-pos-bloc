@@ -5,8 +5,10 @@ import 'package:flutter_pos/data/datasources/auth_local_datasource.dart';
 import 'package:flutter_pos/data/datasources/auth_remote_datasource.dart';
 import 'package:flutter_pos/data/datasources/product_remote_datasource.dart';
 import 'package:flutter_pos/presentation/auth/pages/login_page.dart';
+import 'package:flutter_pos/presentation/home/bloc/checkout/checkout_bloc.dart';
 import 'package:flutter_pos/presentation/home/bloc/product/product_bloc.dart';
 import 'package:flutter_pos/presentation/home/pages/dashboard_page.dart';
+import 'package:flutter_pos/presentation/order/bloc/bloc/order_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'core/constants/colors.dart';
@@ -34,6 +36,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ProductBloc(ProductRemoteDatasource())
             ..add(const ProductEvent.fetchLocal()),
+        ),
+        BlocProvider(create: (context) => CheckoutBloc()),
+        BlocProvider(
+          create: (context) => OrderBloc(),
         ),
       ],
       child: MaterialApp(
