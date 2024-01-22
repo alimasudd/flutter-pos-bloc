@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_pos/presentation/home/models/order_item.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../home/models/order_item.dart';
 
 part 'order_event.dart';
 part 'order_state.dart';
