@@ -1,3 +1,4 @@
+import 'package:flutter_pos/data/models/request/order_request_model.dart';
 import 'package:flutter_pos/data/models/response/product_response_model.dart';
 import 'package:flutter_pos/presentation/home/models/order_item.dart';
 import 'package:flutter_pos/presentation/order/models/order_model.dart';
@@ -79,11 +80,11 @@ class ProductLocalDatasource {
   }
 
   //get order item by id order
-  Future<List<OrderItem>> getOrderItemByOrderId(int idOrder) async {
+  Future<List<OrderItemModel>> getOrderItemByOrderIdLocal(int idOrder) async {
     final db = await instance.database;
     final result = await db.query('order_items', where: 'id_order = $idOrder');
 
-    return result.map((e) => OrderItem.fromMap(e)).toList();
+    return result.map((e) => OrderItem.fromMapLocal(e)).toList();
   }
 
   //update isSync order by id
@@ -91,6 +92,22 @@ class ProductLocalDatasource {
     final db = await instance.database;
     return await db.update('orders', {'is_sync': 1},
         where: 'id = ?', whereArgs: [id]);
+  }
+
+  //get all orders
+  Future<List<OrderModel>> getAllOrder() async {
+    final db = await instance.database;
+    final result = await db.query('orders', orderBy: 'id DESC');
+
+    return result.map((e) => OrderModel.fromLocalMap(e)).toList();
+  }
+
+  //get order item by id order
+  Future<List<OrderItem>> getOrderItemByOrderId(int idOrder) async {
+    final db = await instance.database;
+    final result = await db.query('order_items', where: 'id_order = $idOrder');
+
+    return result.map((e) => OrderItem.fromMap(e)).toList();
   }
 
 
