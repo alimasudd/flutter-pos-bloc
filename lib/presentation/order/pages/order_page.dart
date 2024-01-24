@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pos/presentation/home/bloc/checkout/checkout_bloc.dart';
 import 'package:flutter_pos/presentation/home/models/order_item.dart';
-import 'package:flutter_pos/presentation/order/bloc/bloc/order_bloc.dart';
+import 'package:flutter_pos/presentation/order/bloc/order/order_bloc.dart';
 
 import '../../../core/assets/assets.gen.dart';
 import '../../../core/components/menu_button.dart';
