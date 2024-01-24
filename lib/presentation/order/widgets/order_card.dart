@@ -83,6 +83,7 @@ class OrderCard extends StatelessWidget {
                               if (data.quantity > 1) {
                                 context.read<CheckoutBloc>().add(
                                     CheckoutEvent.removeCheckout(data.product));
+                                    onDeleteTap();
                                 // data.quantity--;
                                 // setState(() {});
                               }
@@ -106,6 +107,7 @@ class OrderCard extends StatelessWidget {
                               context
                                   .read<CheckoutBloc>()
                                   .add(CheckoutEvent.addCheckout(data.product));
+                                  onDeleteTap();
                               // data.quantity++;
                               // setState(() {});
                             },
